@@ -54,31 +54,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration - CS Helpdesk</title>
+    <title>Student Registration | CS Helpdesk - ABU</title>
+    <link rel="icon" href="images/abu-logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="auth-wrapper">
     <div class="auth-card">
         <div class="logo-area">
-            <div class="icon-circle">🎓</div>
+            <div class="icon-circle">
+                <img src="images/abu-logo.png" alt="ABU Logo">
+            </div>
             <h4>CS Helpdesk System</h4>
             <p>Create your student account</p>
         </div>
 
         <?php if ($error): ?>
-            <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+            <div class="alert alert-danger"><i class="bi bi-exclamation-triangle-fill me-1"></i> <?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
         <?php if ($success): ?>
-            <div class="alert alert-success"><?= htmlspecialchars($success) ?>
+            <div class="alert alert-success"><i class="bi bi-check-circle-fill me-1"></i> <?= htmlspecialchars($success) ?>
                 <a href="login.php" class="alert-link">Login here</a>
             </div>
         <?php endif; ?>
 
         <form method="POST" action="">
             <div class="mb-3">
-                <label class="form-label fw-500">Full Name</label>
+                <label class="form-label">Full Name</label>
                 <input type="text" name="full_name" class="form-control"
                        placeholder="e.g. John Doe"
                        value="<?= isset($_POST['full_name']) ? htmlspecialchars($_POST['full_name']) : '' ?>"
@@ -108,10 +112,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" name="confirm_password" class="form-control"
                        placeholder="Repeat your password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Create Account</button>
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-person-plus-fill me-1"></i> Create Account
+            </button>
         </form>
 
-        <p class="text-center mt-3 mb-0" style="font-size: 0.88rem; color: #666;">
+        <p class="text-center mt-3 mb-0" style="font-size: 0.88rem; color: var(--gray-500);">
             Already have an account? <a href="login.php">Login here</a>
         </p>
     </div>

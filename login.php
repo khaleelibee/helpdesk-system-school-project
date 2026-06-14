@@ -44,21 +44,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Login - CS Helpdesk</title>
+    <title>Student Login | CS Helpdesk - ABU</title>
+    <link rel="icon" href="images/abu-logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="auth-wrapper">
     <div class="auth-card">
         <div class="logo-area">
-            <div class="icon-circle">🎓</div>
+            <div class="icon-circle">
+                <img src="images/abu-logo.png" alt="ABU Logo">
+            </div>
             <h4>CS Helpdesk System</h4>
             <p>Student Login</p>
         </div>
 
         <?php if ($error): ?>
-            <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+            <div class="alert alert-danger"><i class="bi bi-exclamation-triangle-fill me-1"></i> <?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
 
         <form method="POST" action="">
@@ -72,14 +76,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" name="password" class="form-control"
                        placeholder="Enter your password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-box-arrow-in-right me-1"></i> Login
+            </button>
         </form>
 
-        <p class="text-center mt-3 mb-0" style="font-size: 0.88rem; color: #666;">
+        <p class="text-center mt-3 mb-0" style="font-size: 0.88rem; color: var(--gray-500);">
             Don't have an account? <a href="register.php">Register here</a>
         </p>
         <p class="text-center mt-2 mb-0" style="font-size: 0.82rem;">
-            <a href="index.php" style="color: #999;">← Back to Home</a>
+            <a href="index.php" style="color: var(--gray-300);"><i class="bi bi-arrow-left"></i> Back to Home</a>
         </p>
     </div>
 </div>

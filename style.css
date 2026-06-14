@@ -1,200 +1,602 @@
 /* =====================================================
-   style.css - Custom Styles for CS Helpdesk System
+   style.css - ABU CS Helpdesk Design System
+   Brand: Ahmadu Bello University (Forest Green & White)
    ===================================================== */
 
-/* --- Google Font --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700;900&display=swap');
 
-/* --- Root Variables --- */
+/* =====================================================
+   1. DESIGN TOKENS
+   ===================================================== */
 :root {
-    --primary:   #0d2b55;   /* Dark Blue */
-    --secondary: #1a4a8a;   /* Medium Blue */
-    --accent:    #2563eb;   /* Bright Blue */
-    --light:     #f0f4f8;   /* Light Gray */
-    --white:     #ffffff;
-    --gray:      #6c757d;
-    --success:   #198754;
-    --warning:   #ffc107;
-    --danger:    #dc3545;
+    /* Brand greens (derived from ABU logo #006633) */
+    --abu-green:        #006633;
+    --abu-green-dark:   #00461f;
+    --abu-green-darker: #003015;
+    --abu-green-light:  #1f9d55;
+    --abu-green-tint:   #e7f4ee;
+    --abu-green-tint-2: #d3ebe0;
+
+    /* Neutrals */
+    --abu-white:     #ffffff;
+    --abu-off-white: #f5f9f7;
+    --gray-900: #1c2b24;
+    --gray-700: #45554d;
+    --gray-500: #6b7a72;
+    --gray-300: #ccd9d2;
+    --gray-100: #eef3f0;
+
+    /* Status colors */
+    --status-pending:     #b45309;
+    --status-pending-bg:  #fdf1e1;
+    --status-progress:    #0369a1;
+    --status-progress-bg: #e3f1fb;
+    --status-resolved:    #006633;
+    --status-resolved-bg: #e7f4ee;
+
+    /* Effects */
+    --radius-sm: 8px;
+    --radius:    12px;
+    --radius-lg: 18px;
+    --shadow-sm: 0 1px 3px rgba(0, 51, 20, 0.07);
+    --shadow-md: 0 6px 20px rgba(0, 51, 20, 0.09);
+    --shadow-lg: 0 16px 40px rgba(0, 51, 20, 0.18);
+    --transition: all 0.2s ease-in-out;
+
+    /* Fonts */
+    --font-heading: 'Merriweather', Georgia, serif;
+    --font-body: 'Inter', sans-serif;
 }
 
-/* --- Base --- */
+/* =====================================================
+   2. BASE
+   ===================================================== */
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--light);
-    color: #333;
+    font-family: var(--font-body);
+    background-color: var(--abu-off-white);
+    color: var(--gray-900);
     min-height: 100vh;
 }
 
-/* --- Navbar --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--abu-green-dark);
+}
+
+a {
+    color: var(--abu-green);
+}
+a:hover {
+    color: var(--abu-green-light);
+}
+
+/* =====================================================
+   3. NAVBAR
+   ===================================================== */
 .navbar {
-    background-color: var(--primary) !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, var(--abu-green) 0%, var(--abu-green-dark) 100%) !important;
+    box-shadow: var(--shadow-md);
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
 }
+
 .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--white) !important;
-    letter-spacing: 0.3px;
+    font-size: 1.05rem;
+    color: var(--abu-white) !important;
+    letter-spacing: 0.2px;
 }
-.navbar .nav-link {
-    color: rgba(255,255,255,0.85) !important;
+
+.navbar-brand .brand-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--abu-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.navbar-brand .brand-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.navbar-brand .brand-text small {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.navbar .nav-link,
+.navbar .text-white-50 {
+    color: rgba(255, 255, 255, 0.88) !important;
     font-size: 0.9rem;
 }
 .navbar .nav-link:hover {
-    color: var(--white) !important;
+    color: var(--abu-white) !important;
 }
 
-/* --- Page Header --- */
-.page-header {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    padding: 28px 0 22px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+.navbar .user-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-size: 0.82rem;
+    color: var(--abu-white);
 }
+
+/* Buttons inside navbar */
+.navbar .btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.5);
+    transition: var(--transition);
+}
+.navbar .btn-outline-light:hover {
+    background-color: var(--abu-white);
+    color: var(--abu-green-dark);
+}
+.navbar .btn-danger {
+    background-color: #b3261e;
+    border-color: #b3261e;
+}
+.navbar .btn-danger:hover {
+    background-color: #8e1d17;
+    border-color: #8e1d17;
+}
+
+/* =====================================================
+   4. PAGE HEADER (with logo watermark)
+   ===================================================== */
+.page-header {
+    position: relative;
+    background: linear-gradient(135deg, var(--abu-green) 0%, var(--abu-green-dark) 100%);
+    color: var(--abu-white);
+    padding: 34px 0 28px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    width: 160px;
+    height: 160px;
+    background-image: url('images/abu-logo-badge.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.08;
+    pointer-events: none;
+}
+
 .page-header h2 {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin: 0;
+    color: var(--abu-white);
+    position: relative;
+    z-index: 1;
 }
 .page-header p {
-    margin: 4px 0 0;
-    font-size: 0.88rem;
+    margin: 6px 0 0;
+    font-size: 0.9rem;
     opacity: 0.85;
+    position: relative;
+    z-index: 1;
 }
 
-/* --- Cards --- */
+/* =====================================================
+   5. CARDS
+   ===================================================== */
 .card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
 }
+
 .card-header {
-    border-radius: 10px 10px 0 0 !important;
-    font-weight: 600;
+    border-radius: var(--radius) var(--radius) 0 0 !important;
+    font-family: var(--font-heading);
+    font-weight: 700;
     font-size: 0.95rem;
+    border-bottom: none;
 }
 .card-header.bg-primary {
-    background-color: var(--primary) !important;
+    background: linear-gradient(135deg, var(--abu-green) 0%, var(--abu-green-dark) 100%) !important;
+    color: var(--abu-white);
 }
 
-/* --- Buttons --- */
-.btn-primary {
-    background-color: var(--accent);
-    border-color: var(--accent);
+/* =====================================================
+   6. BUTTONS
+   ===================================================== */
+.btn {
+    border-radius: var(--radius-sm);
     font-weight: 500;
-}
-.btn-primary:hover {
-    background-color: var(--secondary);
-    border-color: var(--secondary);
+    transition: var(--transition);
 }
 
-/* --- Auth Forms (login/register) --- */
+.btn-primary {
+    background-color: var(--abu-green);
+    border-color: var(--abu-green);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--abu-green-dark);
+    border-color: var(--abu-green-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-outline-secondary {
+    color: var(--gray-700);
+    border-color: var(--gray-300);
+}
+.btn-outline-secondary:hover {
+    background-color: var(--gray-100);
+    color: var(--gray-900);
+    border-color: var(--gray-300);
+}
+
+.btn-light {
+    background-color: var(--abu-white);
+    border-color: var(--abu-white);
+    color: var(--abu-green-dark);
+    font-weight: 600;
+}
+.btn-light:hover {
+    background-color: var(--abu-green-tint);
+    color: var(--abu-green-dark);
+}
+
+/* =====================================================
+   7. AUTH PAGES (login / register)
+   ===================================================== */
 .auth-wrapper {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    background: linear-gradient(135deg, var(--abu-green) 0%, var(--abu-green-dark) 100%);
     padding: 20px;
+    position: relative;
+    overflow: hidden;
 }
+
+/* Faint watermark logo on auth background */
+.auth-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    background-image: url('images/abu-logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: brightness(0) invert(1);
+    opacity: 0.05;
+    top: -120px;
+    right: -120px;
+    pointer-events: none;
+}
+
 .auth-card {
-    background: white;
-    border-radius: 14px;
+    background: var(--abu-white);
+    border-radius: var(--radius-lg);
     padding: 40px 36px;
     width: 100%;
     max-width: 440px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 1;
+    border-top: 4px solid var(--abu-green);
 }
+
 .auth-card .logo-area {
     text-align: center;
     margin-bottom: 24px;
 }
+
 .auth-card .logo-area .icon-circle {
-    width: 64px;
-    height: 64px;
-    background: var(--primary);
+    width: 76px;
+    height: 76px;
+    background: var(--abu-white);
+    border: 2px solid var(--abu-green-tint-2);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 12px;
-    font-size: 1.8rem;
-    color: white;
+    margin: 0 auto 14px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
 }
+.auth-card .logo-area .icon-circle img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+.auth-card .logo-area .icon-circle i {
+    font-size: 2rem;
+    color: var(--abu-green);
+}
+
 .auth-card .logo-area h4 {
     font-weight: 700;
-    color: var(--primary);
+    color: var(--abu-green-dark);
     margin: 0;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
 }
 .auth-card .logo-area p {
-    font-size: 0.82rem;
-    color: var(--gray);
-    margin: 2px 0 0;
+    font-size: 0.84rem;
+    color: var(--gray-500);
+    margin: 3px 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
 }
 
-/* --- Status Badges --- */
-.badge-pending    { background-color: #ffc107; color: #333; }
-.badge-progress   { background-color: #0dcaf0; color: #333; }
-.badge-resolved   { background-color: #198754; color: #fff; }
+/* Form controls */
+.form-label {
+    font-weight: 600;
+    font-size: 0.86rem;
+    color: var(--gray-700);
+}
+.form-control,
+.form-select {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--gray-300);
+    padding: 0.55rem 0.85rem;
+    font-size: 0.92rem;
+    transition: var(--transition);
+}
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--abu-green-light);
+    box-shadow: 0 0 0 0.2rem rgba(0, 102, 51, 0.15);
+}
 
-/* --- Table Styles --- */
+/* =====================================================
+   8. STATUS BADGES
+   ===================================================== */
+.badge {
+    font-weight: 600;
+    font-size: 0.74rem;
+    letter-spacing: 0.3px;
+    padding: 0.4em 0.75em;
+    border-radius: 999px;
+}
+.badge-pending {
+    background-color: var(--status-pending-bg);
+    color: var(--status-pending);
+    border: 1px solid rgba(180, 83, 9, 0.2);
+}
+.badge-progress {
+    background-color: var(--status-progress-bg);
+    color: var(--status-progress);
+    border: 1px solid rgba(3, 105, 161, 0.2);
+}
+.badge-resolved {
+    background-color: var(--status-resolved-bg);
+    color: var(--status-resolved);
+    border: 1px solid rgba(0, 102, 51, 0.2);
+}
+
+/* =====================================================
+   9. TABLES
+   ===================================================== */
 .table thead th {
-    background-color: var(--primary);
-    color: white;
-    font-size: 0.85rem;
+    background-color: var(--abu-green-dark);
+    color: var(--abu-white);
+    font-size: 0.82rem;
     font-weight: 600;
     border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 0.75rem;
+}
+.table tbody tr {
+    transition: var(--transition);
 }
 .table tbody tr:hover {
-    background-color: #e9f0fb;
+    background-color: var(--abu-green-tint);
 }
 .table td {
     font-size: 0.88rem;
     vertical-align: middle;
+    padding: 0.75rem;
 }
 
-/* --- Stat Cards on Dashboard --- */
+/* =====================================================
+   10. STAT CARDS
+   ===================================================== */
 .stat-card {
-    border-radius: 10px;
+    border-radius: var(--radius);
     padding: 20px 24px;
-    color: white;
+    color: var(--abu-white);
     margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.stat-card i {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    font-size: 1.8rem;
+    opacity: 0.25;
 }
 .stat-card .stat-number {
+    font-family: var(--font-heading);
     font-size: 2.2rem;
     font-weight: 700;
     line-height: 1;
 }
 .stat-card .stat-label {
     font-size: 0.85rem;
-    opacity: 0.85;
+    opacity: 0.9;
     margin-top: 4px;
 }
-.stat-card.pending  { background: linear-gradient(135deg, #f59e0b, #d97706); }
-.stat-card.progress { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
-.stat-card.resolved { background: linear-gradient(135deg, #10b981, #059669); }
-.stat-card.total    { background: linear-gradient(135deg, var(--primary), var(--secondary)); }
+.stat-card.total    { background: linear-gradient(135deg, var(--abu-green) 0%, var(--abu-green-dark) 100%); }
+.stat-card.pending  { background: linear-gradient(135deg, #d97706 0%, #b45309 100%); }
+.stat-card.stat-progress { background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%); }
+.stat-card.resolved { background: linear-gradient(135deg, #1f9d55 0%, #006633 100%); }
 
-/* --- Alert --- */
+/* =====================================================
+   11. ALERTS
+   ===================================================== */
 .alert {
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     font-size: 0.9rem;
+    border: none;
+    border-left: 4px solid transparent;
+}
+.alert-success {
+    background-color: var(--abu-green-tint);
+    color: var(--abu-green-dark);
+    border-left-color: var(--abu-green);
+}
+.alert-danger {
+    background-color: #fdecec;
+    color: #8e1d17;
+    border-left-color: #b3261e;
 }
 
-/* --- Admin Reply Box --- */
+/* =====================================================
+   12. ADMIN REPLY BOX
+   ===================================================== */
 .reply-box {
-    background: #f0f7ff;
-    border-left: 4px solid var(--accent);
+    background: var(--abu-green-tint);
+    border-left: 4px solid var(--abu-green);
     padding: 12px 16px;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     font-size: 0.88rem;
+    color: var(--gray-900);
 }
 
-/* --- Responsive tweaks --- */
+/* =====================================================
+   13. EMPTY STATES
+   ===================================================== */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--gray-500);
+}
+.empty-state i {
+    font-size: 2.8rem;
+    color: var(--gray-300);
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+/* =====================================================
+   14. HERO SECTION (index page)
+   ===================================================== */
+.hero-section {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--abu-green) 0%, var(--abu-green-dark) 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 40px 20px;
+}
+.hero-section::before {
+    content: '';
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background-image: url('images/abu-logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: brightness(0) invert(1);
+    opacity: 0.05;
+    bottom: -220px;
+    left: -220px;
+    pointer-events: none;
+}
+.hero-section .hero-badge {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: var(--abu-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 22px;
+    box-shadow: var(--shadow-lg);
+    padding: 14px;
+}
+.hero-section .hero-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 620px;
+    color: var(--abu-white);
+}
+.hero-content h1 {
+    font-weight: 700;
+    font-size: 2.1rem;
+    margin-bottom: 10px;
+    color: var(--abu-white);
+}
+.hero-content h2 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-family: var(--font-body);
+    opacity: 0.85;
+    margin-bottom: 26px;
+    color: var(--abu-white);
+}
+.hero-content p {
+    font-size: 0.95rem;
+    opacity: 0.78;
+    margin-bottom: 34px;
+    line-height: 1.7;
+}
+.hero-content .admin-link {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+.hero-content .admin-link:hover {
+    color: var(--abu-white);
+}
+
+/* =====================================================
+   15. RESPONSIVE TWEAKS
+   ===================================================== */
 @media (max-width: 576px) {
-    .auth-card { padding: 28px 20px; }
-    .page-header h2 { font-size: 1.2rem; }
+    .auth-card { padding: 28px 22px; }
+    .page-header h2 { font-size: 1.25rem; }
+    .page-header::after { width: 110px; height: 110px; right: 10px; opacity: 0.06; }
+    .hero-content h1 { font-size: 1.6rem; }
+    .hero-content h2 { font-size: 1.05rem; }
 }

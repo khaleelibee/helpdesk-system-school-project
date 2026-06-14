@@ -32,9 +32,9 @@ foreach ($complaints as $c) {
 
 // Helper function for status badge
 function statusBadge($status) {
-    if ($status === 'Pending')     return '<span class="badge badge-pending">' . $status . '</span>';
-    if ($status === 'In Progress') return '<span class="badge badge-progress">' . $status . '</span>';
-    if ($status === 'Resolved')    return '<span class="badge badge-resolved">' . $status . '</span>';
+    if ($status === 'Pending')     return '<span class="badge badge-pending"><i class="bi bi-hourglass-split me-1"></i>' . $status . '</span>';
+    if ($status === 'In Progress') return '<span class="badge badge-progress"><i class="bi bi-arrow-repeat me-1"></i>' . $status . '</span>';
+    if ($status === 'Resolved')    return '<span class="badge badge-resolved"><i class="bi bi-check-circle-fill me-1"></i>' . $status . '</span>';
 }
 ?>
 <!DOCTYPE html>
@@ -42,8 +42,10 @@ function statusBadge($status) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Dashboard - CS Helpdesk</title>
+    <title>My Dashboard | CS Helpdesk - ABU</title>
+    <link rel="icon" href="images/abu-logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -51,11 +53,17 @@ function statusBadge($status) {
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand" href="dashboard.php">🎓 CS Helpdesk</a>
-        <div class="ms-auto d-flex align-items-center gap-3">
-            <span class="text-white-50" style="font-size:0.85rem;">👤 <?= htmlspecialchars($student_name) ?></span>
-            <a href="submit_complaint.php" class="btn btn-sm btn-outline-light">+ New Complaint</a>
-            <a href="logout.php" class="btn btn-sm btn-danger">Logout</a>
+        <a class="navbar-brand" href="dashboard.php">
+            <span class="brand-badge"><img src="images/abu-logo-badge.png" alt="ABU Logo"></span>
+            <span class="brand-text">
+                Ahmadu Bello University
+                <small>Dept. of Computer Science &mdash; Helpdesk</small>
+            </span>
+        </a>
+        <div class="ms-auto d-flex align-items-center gap-2">
+            <span class="user-chip"><i class="bi bi-person-circle"></i> <?= htmlspecialchars($student_name) ?></span>
+            <a href="submit_complaint.php" class="btn btn-sm btn-outline-light"><i class="bi bi-plus-circle me-1"></i>New Complaint</a>
+            <a href="logout.php" class="btn btn-sm btn-danger"><i class="bi bi-box-arrow-right me-1"></i>Logout</a>
         </div>
     </div>
 </nav>
@@ -74,24 +82,28 @@ function statusBadge($status) {
     <div class="row mb-4">
         <div class="col-6 col-md-3">
             <div class="stat-card total">
+                <i class="bi bi-folder2-open"></i>
                 <div class="stat-number"><?= $total ?></div>
                 <div class="stat-label">Total Complaints</div>
             </div>
         </div>
         <div class="col-6 col-md-3">
             <div class="stat-card pending">
+                <i class="bi bi-hourglass-split"></i>
                 <div class="stat-number"><?= $pending ?></div>
                 <div class="stat-label">Pending</div>
             </div>
         </div>
         <div class="col-6 col-md-3">
-            <div class="stat-card progress">
+            <div class="stat-card stat-progress">
+                <i class="bi bi-arrow-repeat"></i>
                 <div class="stat-number"><?= $progress ?></div>
                 <div class="stat-label">In Progress</div>
             </div>
         </div>
         <div class="col-6 col-md-3">
             <div class="stat-card resolved">
+                <i class="bi bi-check-circle"></i>
                 <div class="stat-number"><?= $resolved ?></div>
                 <div class="stat-label">Resolved</div>
             </div>
@@ -101,15 +113,15 @@ function statusBadge($status) {
     <!-- Complaints Table -->
     <div class="card">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <span>My Complaints</span>
-            <a href="submit_complaint.php" class="btn btn-sm btn-light" style="font-size:0.8rem;">+ Submit New</a>
+            <span><i class="bi bi-list-ul me-1"></i> My Complaints</span>
+            <a href="submit_complaint.php" class="btn btn-sm btn-light"><i class="bi bi-plus-circle me-1"></i>Submit New</a>
         </div>
         <div class="card-body p-0">
             <?php if (empty($complaints)): ?>
-                <div class="text-center py-5 text-muted">
-                    <div style="font-size:2.5rem;">📭</div>
-                    <p class="mt-2">You have not submitted any complaints yet.</p>
-                    <a href="submit_complaint.php" class="btn btn-primary btn-sm">Submit a Complaint</a>
+                <div class="empty-state">
+                    <i class="bi bi-inbox"></i>
+                    <p class="mb-3">You have not submitted any complaints yet.</p>
+                    <a href="submit_complaint.php" class="btn btn-primary btn-sm"><i class="bi bi-plus-circle me-1"></i>Submit a Complaint</a>
                 </div>
             <?php else: ?>
             <div class="table-responsive">
@@ -142,7 +154,7 @@ function statusBadge($status) {
                                         <?= htmlspecialchars($c['admin_reply']) ?>
                                     </div>
                                 <?php else: ?>
-                                    <span class="text-muted" style="font-size:0.82rem;">Awaiting reply...</span>
+                                    <span class="text-muted" style="font-size:0.82rem;"><i class="bi bi-clock-history me-1"></i>Awaiting reply...</span>
                                 <?php endif; ?>
                             </td>
                         </tr>
