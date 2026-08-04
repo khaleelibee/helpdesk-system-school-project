@@ -34,7 +34,7 @@ if (isset($_SESSION['admin_id'])) {
             <span class="brand-badge"><img src="images/abu-logo-badge.png" alt="ABU Logo"></span>
             <span class="brand-text">
                 Ahmadu Bello University
-                <small>Dept. of Computer Science &mdash; Helpdesk</small>
+                <small>Dept. of Computer Science Helpdesk</small>
             </span>
         </a>
         <div class="ms-auto">
@@ -54,7 +54,7 @@ if (isset($_SESSION['admin_id'])) {
         <h2>Student Helpdesk System</h2>
         <p>
             Submit and track your complaints easily. Get timely responses
-            from the department administration &mdash; all in one place.
+            from the department administration all in one place.
         </p>
         <div class="d-flex gap-3 justify-content-center flex-wrap">
             <a href="register.php" class="btn btn-light btn-lg px-4">
