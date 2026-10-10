@@ -84,21 +84,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label class="form-label">Full Name</label>
                 <input type="text" name="full_name" class="form-control"
-                       placeholder="e.g. John Doe"
+                       placeholder="e.g. Khaleel Ibrahim"
                        value="<?= isset($_POST['full_name']) ? htmlspecialchars($_POST['full_name']) : '' ?>"
                        required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Email Address</label>
                 <input type="email" name="email" class="form-control"
-                       placeholder="e.g. john@example.com"
+                       placeholder="e.g. khaleel@example.com"
                        value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
                        required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Matric Number</label>
                 <input type="text" name="matric_number" class="form-control"
-                       placeholder="e.g. CSC/2020/001"
+                       placeholder="e.g. U21CS9999"
                        value="<?= isset($_POST['matric_number']) ? htmlspecialchars($_POST['matric_number']) : '' ?>"
                        required>
             </div>
