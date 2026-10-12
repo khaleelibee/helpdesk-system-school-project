@@ -57,7 +57,7 @@ function statusBadge($status) {
             <span class="brand-badge"><img src="images/abu-logo-badge.png" alt="ABU Logo"></span>
             <span class="brand-text">
                 Ahmadu Bello University
-                <small>Dept. of Computer Science &mdash; Helpdesk</small>
+                <small>Dept. of Computer Science Helpdesk</small>
             </span>
         </a>
         <div class="ms-auto d-flex align-items-center gap-2">

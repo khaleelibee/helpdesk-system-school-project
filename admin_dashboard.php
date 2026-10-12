@@ -82,7 +82,7 @@ $filtered = ($filter === 'All') ? $complaints : array_filter($complaints, fn($c)
             <span class="brand-badge"><img src="images/abu-logo-badge.png" alt="ABU Logo"></span>
             <span class="brand-text">
                 Ahmadu Bello University
-                <small>Dept. of Computer Science &mdash; Admin Panel</small>
+                <small>Dept. of Computer Science Admin Panel</small>
             </span>
         </a>
         <div class="ms-auto d-flex align-items-center gap-2">
